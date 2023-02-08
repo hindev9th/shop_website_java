@@ -11,8 +11,8 @@ public class BrandMapper implements RowMapper<Brand> {
     public Brand mapRow(ResultSet resultSet, int i) throws SQLException {
         Brand brand = new Brand();
         brand.setId(resultSet.getInt("id"));
-        brand.setCode(resultSet.getString("code"));
         brand.setName(resultSet.getString("name"));
+        brand.setLogo(resultSet.getString("logo"));
         return brand;
     }
 }

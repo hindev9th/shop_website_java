@@ -19,18 +19,9 @@ public class HomeController extends BaseController{
     public ModelAndView Index(){
         super.mv.addObject("sliders",super.HomeService.getDataSliders());
         super.mv.addObject("product_featured",super.HomeService.getDataProductsFeatured());
+        super.mv.addObject("product_new",super.HomeService.getDataProductsNew());
+        super.mv.addObject("product_top",super.HomeService.getDataProductsTopRate());
         super.mv.setViewName("user/index");
         return super.mv;
-    }
-
-    @RequestMapping(value = {"/signin"} , method = RequestMethod.POST)
-    public String signin(@ModelAttribute("customer")Customer customer, BindingResult result, HttpServletRequest request){
-        try {
-            request.login(customer.getUsername(),customer.getPassword());
-            return "/";
-        }catch (ServletException e){
-            result.reject("error.login", "Invalid username or password");
-            return "signin";
-        }
     }
 }

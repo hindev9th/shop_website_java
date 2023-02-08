@@ -11,13 +11,13 @@ public class Slider {
     public Slider() {
     }
 
-    public Slider(int id, String url, String title, String content, String image, int positon) {
+    public Slider(int id, String url, String title, String content, String image, int position) {
         this.id = id;
         this.url = url;
         this.title = title;
         this.content = content;
         this.image = image;
-        this.position = positon;
+        this.position = position;
     }
 
     public int getId() {
@@ -60,11 +60,11 @@ public class Slider {
         this.image = image;
     }
 
-    public int getPositon() {
+    public int getPosition() {
         return position;
     }
 
-    public void setPositon(int positon) {
+    public void setPosition(int positon) {
         this.position = positon;
     }
 }

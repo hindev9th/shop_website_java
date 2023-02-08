@@ -16,8 +16,15 @@ public class CustomerDao {
 
     public List<Customer> getDataCustomers(){
         List<Customer> list = new ArrayList<Customer>();
-        String sql = "";
+        String sql = "SELECT * from customer";
         list = this.jdbcTemplate.query(sql,new CustomerMapper());
         return list;
+    }
+
+    public Customer login(String username,String password){
+        Customer customer;
+        String sql = "SELECT * from customer where username = ? and password = ?";
+        customer = this.jdbcTemplate.queryForObject(sql,new Object[]{username,password},new CustomerMapper());
+        return customer;
     }
 }

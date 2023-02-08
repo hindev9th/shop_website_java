@@ -11,5 +11,8 @@ public interface IHomeService {
     public List<Brand> getDataBrands();
     public List<Slider> getDataSliders();
     public List<Customer> getDataCustomers();
-    public List<Products> getDataProductsFeatured();
+    public List<Product> getDataProductsFeatured();
+    public List<Product> getDataProductsNew();
+    public List<Product> getDataProductsTopRate();
+    public List<Product> getDataProducts();
 }

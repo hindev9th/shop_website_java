@@ -2,25 +2,15 @@ package WebShop.Entity;
 
 public class Brand {
     private int id;
-    private String code;
     private String name;
-    private String image;
+    private String logo;
 
     public Brand(){}
 
-    public Brand(int id, String code, String name, String image) {
+    public Brand(int id, String name, String logo) {
         this.id = id;
-        this.code = code;
         this.name = name;
-        this.image = image;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
+        this.logo = logo;
     }
 
     public int getId() {
@@ -31,19 +21,19 @@ public class Brand {
         this.id = id;
     }
 
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
     }
 }

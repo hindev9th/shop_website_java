@@ -1995,7 +1995,7 @@ li.megamenu-img a {
 .home-two-sidebar-product .owl-stage,
 .carosel-next-prive .owl-stage,
 .product-carousel-active-3 .owl-stage {
-    padding-bottom: 96px;
+    padding-bottom: 150px;
 }
 
 .product-carousel-active-2 .owl-dots,
@@ -2340,7 +2340,7 @@ li.megamenu-img a {
 }
 
 .home-four .brand-logo-area {
-    margin-top: 100px;
+    margin-top: 30px;
     z-index: 0;
     position: relative;
 }
@@ -3795,7 +3795,7 @@ button.owl-dot {
     width: 100%;
     left: 0;
     bottom: -1px;
-    z-index: 2;
+    z-index: 0;
 }
 
 .home-three .big-product-area .product-info h2 {

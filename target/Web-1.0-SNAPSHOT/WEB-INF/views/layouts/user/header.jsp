@@ -7,7 +7,6 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="/WEB-INF/views/layouts/user/taglib.jsp" %>
-
 <!-- HEADER AREA START -->
 <header class="header-area">
     <!-- Header top area start -->
@@ -25,18 +24,25 @@
                 <div class="col-lg-6 col-sm-6">
                     <div class="topbar-nav">
                         <div class="wpb_wrapper">
-                            <!-- my account -->
-                            <div class="menu-my-account-container">
-                                <a href="#">My Account <i class="ion-ios-arrow-down"></i></a>
-                                <ul>
-                                    <li><a href="my-account.html">My Account</a></li>
-                                    <li><a href="wishlist.html">Wishlist</a></li>
+                            <c:if test="${not empty sessionScope.customer}" >
+                                <!-- my account -->
+                                <div class="menu-my-account-container">
+                                    <a href="#">My Account <i class="ion-ios-arrow-down"></i></a>
+                                    <ul>
+                                        <li><a href="my-account.html">My Account</a></li>
+                                        <li><a href="wishlist.html">Wishlist</a></li>
 
-                                    <li><a href="login.html">Login</a></li>
-                                    <li><a href="register.html">Register</a></li>
-                                    <li><a href="checkout.html">Checkout</a></li>
-                                </ul>
-                            </div>
+                                        <li><a href="login.html">Login</a></li>
+                                        <li><a href="register.html">Register</a></li>
+                                        <li><a href="checkout.html">Checkout</a></li>
+                                    </ul>
+                                </div>
+                            </c:if>
+                            <c:if test="${empty sessionScope.customer}" >
+                                <a href="<c:url value="/signin" />">Đăng nhập<i class=""></i></a>
+                                <span> | </span>
+                                <a href="<c:url value="/signoup" />">Đăng ký<i class=""></i></a>
+                            </c:if>
                         </div>
                     </div>
                 </div>

@@ -10,15 +10,17 @@ public class CustomerMapper implements RowMapper<Customer> {
     public Customer mapRow(ResultSet resultSet, int i) throws SQLException {
         Customer customer = new Customer();
         customer.setId(resultSet.getInt("id"));
+        customer.setUsername(resultSet.getString("username"));
+        customer.setPassword(resultSet.getString("password"));
         customer.setName(resultSet.getString("name"));
         customer.setGender(resultSet.getString("gender"));
         customer.setDate(resultSet.getString("date"));
         customer.setPhone(resultSet.getInt("phone"));
         customer.setEmail(resultSet.getString("email"));
-        customer.setUsername(resultSet.getString("username"));
-        customer.setPassword(resultSet.getString("password"));
         customer.setAddress(resultSet.getString("address"));
         customer.setImage(resultSet.getString("image"));
-        return null;
+        customer.setCreateAt(resultSet.getString("createAt"));
+        customer.setUpdateAt(resultSet.getString("updateAt"));
+        return customer;
     }
 }

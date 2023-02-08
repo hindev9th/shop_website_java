@@ -14,7 +14,7 @@ public class SliderMapper implements RowMapper<Slider> {
         slider.setTitle(resultSet.getString("title"));
         slider.setContent(resultSet.getString("content"));
         slider.setImage(resultSet.getString("image"));
-        slider.setPositon(resultSet.getInt("position"));
+        slider.setPosition(resultSet.getInt("position"));
         return slider;
     }
 }

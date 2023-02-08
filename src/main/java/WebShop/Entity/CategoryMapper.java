@@ -10,7 +10,6 @@ public class CategoryMapper implements RowMapper<Category> {
     public Category mapRow(ResultSet resultSet, int i) throws SQLException {
         Category category = new Category();
         category.setId(resultSet.getInt("id"));
-        category.setCode(resultSet.getString("code"));
         category.setName(resultSet.getString("name"));
         return category;
     }

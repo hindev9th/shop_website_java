@@ -45,7 +45,16 @@ public class HomeService implements IHomeService {
     }
 
     @Override
-    public List<Products> getDataProductsFeatured() {
-        return this.productDao.getDataProductsFeatured();
+    public List<Product> getDataProductsFeatured() {return this.productDao.getDataProductsFeatured();
     }
+    @Override
+    public List<Product> getDataProductsNew() {
+        return this.productDao.getDataProductsNew();
+    }
+
+    @Override
+    public List<Product> getDataProductsTopRate() {return  this.productDao.getDataProductsTopRate();}
+
+    @Override
+    public List<Product> getDataProducts() {return this.productDao.getDataProducts();}
 }

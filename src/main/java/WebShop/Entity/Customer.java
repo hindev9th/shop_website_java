@@ -11,11 +11,13 @@ public class Customer {
     private String password;
     private String address;
     private String image;
+    private String createAt;
+    private String updateAt;
 
     public Customer() {
     }
 
-    public Customer(int id, String name, String gender, String date, int phone, String email,String username, String password, String address, String image) {
+    public Customer(int id, String name, String gender, String date, int phone, String email,String username, String password, String address, String image,String createAt,String updateAt) {
         this.id = id;
         this.name = name;
         this.gender = gender;
@@ -26,6 +28,8 @@ public class Customer {
         this.password = password;
         this.address = address;
         this.image = image;
+        this.createAt = createAt;
+        this.updateAt = updateAt;
     }
 
     public int getId() {
@@ -108,6 +112,22 @@ public class Customer {
         this.image = image;
     }
 
+    public String getCreateAt() {
+        return createAt;
+    }
+
+    public void setCreateAt(String createAt) {
+        this.createAt = createAt;
+    }
+
+    public String getUpdateAt() {
+        return updateAt;
+    }
+
+    public void setUpdateAt(String updateAt) {
+        this.updateAt = updateAt;
+    }
+
     @Override
     public String toString() {
         return "Customer{" +
@@ -120,6 +140,8 @@ public class Customer {
                 ", password='" + password + '\'' +
                 ", address='" + address + '\'' +
                 ", image='" + image + '\'' +
+                ", createAt='" + createAt + '\'' +
+                ", updateAt='" + updateAt + '\'' +
                 '}';
     }
 }

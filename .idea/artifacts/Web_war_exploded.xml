@@ -14,6 +14,9 @@
           <element id="module-output" name="Web" />
         </element>
         <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.14.2" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.14.2" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.14.2" />
           <element id="library" level="project" name="Maven: org.springframework:spring-jdbc:4.3.20.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-beans:4.3.20.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-core:4.3.20.RELEASE" />
