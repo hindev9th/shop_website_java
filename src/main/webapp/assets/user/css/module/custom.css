@@ -134,10 +134,13 @@ a.btn-add-to-cart,a.btn-remove-item-cart{
         color: black;
     }
 }
-
+/*register*/
+.form-register input{
+    margin: 0;
+}
 
 /* login in product review */
-input#btn-login:focus{
+input#btn-login:focus , input.return-customer-btn:focus{
     background-color: #333333;
 }
 .box-login {

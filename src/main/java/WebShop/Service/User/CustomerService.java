@@ -14,4 +14,14 @@ public class CustomerService implements ICuscomerService{
     public Customer login(String username, String password) {
         return this.customerDao.login(username,password);
     }
+
+    @Override
+    public Boolean register(Customer customer) {
+        return customerDao.register(customer);
+    }
+
+    @Override
+    public Boolean exists(String username) {
+        return customerDao.exists(username);
+    }
 }

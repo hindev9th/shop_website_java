@@ -27,7 +27,7 @@
                             <c:if test="${not empty sessionScope.customer}">
                                 <!-- my account -->
                                 <div class="menu-my-account-container">
-                                    <a href="#">My Account <i class="ion-ios-arrow-down"></i></a>
+                                    <a href="#">${sessionScope.customer.name} <i class="ion-ios-arrow-down"></i></a>
                                     <ul>
                                         <li><a href="my-account.html">Tài khoản của tôi</a></li>
                                         <li><a href="checkout.html">Sở thích</a></li>

@@ -62,6 +62,7 @@
         <script src="<c:url value = "/assets/user/js/main.js"/>"></script>
         <!-- Custom js  -->
         <script src="<c:url value = "/assets/user/js/custom.js"/>"></script>
+        <script src="<c:url value = "/assets/user/js/ajax.js"/>"></script>
 
     </body>
 </html>

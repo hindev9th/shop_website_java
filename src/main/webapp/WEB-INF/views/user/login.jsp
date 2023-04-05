@@ -44,11 +44,11 @@
                 <div class="col-md-6">
                     <div class="well mb-sm-30">
                         <div class="new-customer">
-                            <h3 class="custom-title">new customer</h3>
-                            <p class="mtb-10"><strong>Register</strong></p>
-                            <p>By creating an account you will be able to shop faster, be up to date on an order's
-                                status, and keep track of the orders you have previously made</p>
-                            <a class="customer-btn" href="register.html">continue</a>
+                            <h3 class="custom-title">Khách hàng mới</h3>
+                            <p class="mtb-10"><strong>Đăng ký</strong></p>
+                            <p>Bằng cách tạo tài khoản, bạn sẽ có thể mua sắm nhanh hơn, cập nhật đơn hàng
+                                trạng thái và theo dõi các đơn đặt hàng bạn đã thực hiện trước đó</p>
+                            <a class="customer-btn btn-return" href="<c:url value="/register"/> ">Đăng ký ngay</a>
                         </div>
                     </div>
                 </div>

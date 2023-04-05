@@ -9,7 +9,7 @@
 <%@ include file="/WEB-INF/views/layouts/user/taglib.jsp" %>
 <html>
 <head>
-    <title>Sign Up</title>
+    <title>Register</title>
 </head>
 <body>
     <div class="breadcrumbs-container">
@@ -30,7 +30,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-                    <h1 class="entry-title">Register</h1>
+                    <h1 class="entry-title">Đăng ký tài khoản mới</h1>
                 </div>
             </div>
         </div>
@@ -41,70 +41,73 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-                    <form:form action="/sign" cssClass="form-register" modelAttribute="customer" method="post">
-                        <form:input path="name" cssClass="form-control"
-                    </form:form>
-                    <form class="form-register" action="<c:url value="/"/>"  method="post">
+                    <form:form action="register" cssClass="form-register" method="post" modelAttribute="customer">
                         <fieldset>
-                            <legend>Your Personal Details</legend>
+                            <legend>Thông tin cá nhân của bạn</legend>
                             <div class="form-group d-md-flex align-items-md-center">
-                                <label class="control-label col-md-2" for="f-name"><span class="require">*</span>First Name</label>
+                                <form:label path="name" cssClass="control-label col-md-2" ><span class="require">*</span>Họ tên</form:label>
                                 <div class="col-md-10">
-                                    <input type="text" class="form-control" id="f-name" placeholder="First Name">
+                                    <form:input path="name" type="text" cssClass="form-control" required="true" placeholder="vd: Nguyễn Văn A"/>
                                 </div>
                             </div>
                             <div class="form-group d-md-flex align-items-md-center">
-                                <label class="control-label col-md-2" for="l-name"><span class="require">*</span>Last Name</label>
+                                <form:label path="gender" cssClass="control-label col-md-2"><span class="require">*</span>Giới tính</form:label>
                                 <div class="col-md-10">
-                                    <input type="text" class="form-control" id="l-name" placeholder="Last Name">
+                                    <form:input path="gender" type="text" cssClass="form-control"  required="true" placeholder="vd: Nam"/>
                                 </div>
                             </div>
                             <div class="form-group d-md-flex align-items-md-center">
-                                <label class="control-label col-md-2" for="email"><span class="require">*</span>Enter you email address here...</label>
+                                <form:label path="date" cssClass="control-label col-md-2"><span class="require">*</span>Ngày sinh</form:label>
                                 <div class="col-md-10">
-                                    <input type="email" class="form-control" id="email" placeholder="Enter you email address here...">
+                                    <form:input path="date" type="date" cssClass="form-control" id="registerDate" required="true"/>
                                 </div>
                             </div>
                             <div class="form-group d-md-flex align-items-md-center">
-                                <label class="control-label col-md-2" for="number"><span class="require">*</span>Telephone</label>
+                                <form:label path="phone" cssClass="control-label col-md-2">Số điện thoại</form:label>
                                 <div class="col-md-10">
-                                    <input type="email" class="form-control" id="number" placeholder="Telephone">
+                                    <form:input path="phone" type="number" cssClass="form-control"
+                                                title="Số điện thoại của bạn"
+                                                placeholder="0858..." />
+                                </div>
+                            </div>
+                            <div class="form-group d-md-flex align-items-md-center">
+                                <form:label path="email" cssClass="control-label col-md-2">Email</form:label>
+                                <div class="col-md-10">
+                                    <form:input path="email" type="email" cssClass="form-control"
+                                                title="Địa chỉ email của bạn vd: abc@gmail.com"
+                                                placeholder="abc@gg.com" />
                                 </div>
                             </div>
                         </fieldset>
                         <fieldset>
-                            <legend>Your Password</legend>
+                            <legend>Tài khoản của bạn</legend>
                             <div class="form-group d-md-flex align-items-md-center">
-                                <label class="control-label col-md-2" for="pwd"><span class="require">*</span>Password:</label>
+                                <form:label path="username" cssClass="control-label col-md-2" title="(Chữ hoa , thường , số)(không được khoảng trắng và các ký tự đặc biệt)"><span class="require">*</span>Tên tài khoản:</form:label>
                                 <div class="col-md-10">
-                                    <input type="password" class="form-control" id="pwd" placeholder="Password">
+                                    <form:input path="username" required="true" minlength="6" id="register-usn" pattern="[a-zA-Z0-9]+" type="text"  cssClass="form-control" title="Tên tài khoản(Chữ hoa , thường , số)(không được khoảng trắng và các ký tự đặc biệt)" placeholder="tentaikhoan..."/>
                                 </div>
                             </div>
                             <div class="form-group d-md-flex align-items-md-center">
-                                <label class="control-label col-md-2" for="pwd-confirm"><span class="require">*</span>Confirm Password</label>
+                                    <form:label path="password" cssClass="control-label col-md-2" title="(Chữ hoa , thường , số)(không được khoảng trắng và các ký tự đặc biệt)"><span class="require">*</span>Mật khẩu:</form:label>
                                 <div class="col-md-10">
-                                    <input type="password" class="form-control" id="pwd-confirm" placeholder="Confirm password">
+                                    <form:input path="password" required="true" minlength="6" id="register-pwd" pattern="[a-zA-Z0-9]+" type="password"  cssClass="form-control" title="Mật khẩu(Chữ hoa , thường , số)(không được khoảng trắng và các ký tự đặc biệt)"/>
                                 </div>
                             </div>
-                        </fieldset>
-                        <fieldset class="newsletter-input">
-                            <legend>Newsletter</legend>
                             <div class="form-group d-md-flex align-items-md-center">
-                                <label class="col-md-2 control-label">Subscribe</label>
-                                <div class="col-md-10 radio-button">
-                                    <label class="radio-inline"><input type="radio" name="optradio">Yes</label>
-                                    <label class="radio-inline"><input type="radio" name="optradio">No</label>
+                                <label class="control-label col-md-2" for="pwd-confirm" title="(Chữ hoa , thường , số)(không được khoảng trắng và các ký tự đặc biệt)"><span class="require">*</span>Xác nhận mật khẩu</label>
+                                <div class="col-md-10">
+                                    <input type="password" pattern="[a-zA-Z0-9]+" class="form-control" required id="pwd-confirm" title="Xác nhận mật khẩu(Chữ hoa , thường , số)(không được khoảng trắng và các ký tự đặc biệt)">
                                 </div>
                             </div>
                         </fieldset>
                         <div class="terms">
                             <div class="float-md-right">
-                                <span>I have read and agree to the <a href="#" class="agree"><b>Privacy Policy</b></a></span>
-                                <input type="checkbox" name="agree" value="1"> &nbsp;
-                                <input type="submit" value="Continue" class="return-customer-btn">
+<%--                                <span>I have read and agree to the <a href="#" class="agree"><b>Privacy Policy</b></a></span>--%>
+<%--                                <input type="checkbox" name="agree" value="1"> &nbsp;--%>
+                                <input type="submit" value="Đăng ký" class="return-customer-btn">
                             </div>
                         </div>
-                    </>
+                    </form:form>
                 </div>
             </div>
         </div>

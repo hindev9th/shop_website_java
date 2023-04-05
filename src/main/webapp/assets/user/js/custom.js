@@ -56,31 +56,25 @@
         removeToast($(this).parent());
     });
 
-    // Login
-    $('#login-form').submit(function (e) {
-        e.preventDefault();
-        var loginFr = $(this);
-        $.ajax({
-            type: loginFr.attr("method"),
-            url: loginFr.attr("action"),
-            data: loginFr.serialize(),
-            beforeSend: function (data) {
-                $(".box-loading").addClass("active");
-            },
-            success: function (response) {
-                var data = JSON.parse(response);
-                $(".box-loading").removeClass("active");
-                if (data.status == 200){
-                    if ('referrer' in document) {
-                        window.location = document.referrer;
-                    }
-                }else {
-                    showToast(statusMessage.warning,data.message);
-                }
-            }
-        })
+    //loading
+    $('.btn-return').click(function (){
+        $(".box-loading").addClass("active");
     })
+    $(window).on('unload', function() {
+        $('.box-loading').removeClass("active");
+    });
 
+    //register
+    $('#pwd-confirm').keyup(function (){
+        var password = $('#register-pwd').val();
+        var confirm = $(this).val();
+
+        if (confirm == password){
+            $(this).css('border','2px solid #198754');
+        }else {
+            $(this).css('border','2px solid #ec5a4a');
+        }
+    })
 
     //Product detail
     $(".tab-color").click(function () {
@@ -108,105 +102,7 @@
         });
     });
 
-    var i = 1;
-    $("#btn-more-review").click(function () {
-
-        var total = $("#total-review").html();
-        var numberPage = total / 5;
-        numberPage = parseInt(numberPage);
-        var element = $(this);
-        var url = $(this).attr("action");
-
-        $.ajax({
-            url: url + i.toString(),
-            type: "get",
-            beforeSend: function (data) {
-                $(this).attr("disabled", true);
-                console.log("load");
-                element.text("Đang tải...");
-            },
-            success: function (data) {
-                i = i + 1;
-                element.text("Xem thêm");
-                $(this).attr("disabled", false);
-                $("#list-product-review").append(data);
-            }, error: function (data) {
-                element.text("Xem thêm");
-                $(this).attr("disabled", false);
-            }
-        });
-
-        if (i >= numberPage) {
-            $(this).addClass("hide");
-        }
-    });
-
-    //cart
-    // add to cart
-    $("a.btn-add-to-cart").click(function () {
-        var action = $(this).attr("action");
-        var productId = $(this).attr("product-id");
-        var colorId = $(this).attr("data-color-id");
-        var i = $(this).attr("i");
-        var element = $(this);
-        $.ajax({
-            url: action,
-            type: "post",
-            data: {
-                "id": productId,
-                "colorId": colorId,
-                "i": i,
-            }, beforeSend: function (data) {
-                element.text("Đang thêm...");
-            }
-            , success: function (response) {
-                element.text("Thêm giỏ hàng");
-                const data = JSON.parse(response);
-                if (data.status === 200) {
-                    $(".subtotal-minicart").html(formatCurrency(data.sTotalCart));
-                    $("#quantity-minicart").html(data.cCart);
-                    $(".total-save").html(formatCurrency(data.tSave));
-                    updateMiniCart(data.cartList);
-                    showToast(statusMessage.success, data.message);
-                } else {
-                    showToast(statusMessage.error, data.message);
-                }
-
-                // alert()
-            },
-        })
-    });
-
-    //Remove item mini cart
-    $(document).on('click', '.btn-remove-item-cart', function () {
-        var url = $("base").attr("href");
-        var productId = $(this).attr("data-id");
-        var colorId = $(this).attr("data-color");
-        $.ajax({
-            url: url+"ajax/cart/delete",
-            type: "post",
-            data: {
-                "id": productId,
-                "colorId": colorId,
-            }, beforeSend: function (data) {
-
-            }
-            , success: function (data) {
-                const response = JSON.parse(data);
-                if (response.status === 200) {
-                    $(".subtotal-minicart").html(formatCurrency(response.sTotalCart));
-                    $("#quantity-minicart").html(response.cCart);
-                    $(".total-save").html(formatCurrency(response.tSave));
-                    updateMiniCart(response.cartList);
-                    showToast(statusMessage.success, response.message);
-                } else {
-                    showToast(statusMessage.error, response.message);
-                }
-
-            },
-        })
-    });
-
+    //minicart
     function updateMiniCart(data) {
         $("#list-item-minicart").empty();
         var url = $("base").attr("href");
@@ -242,4 +138,10 @@
         let formatNumber = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(number);
         return formatNumber;
     }
+
+    window.updateMiniCart = updateMiniCart;
+    window.showToast = showToast;
+    window.formatCurrency = formatCurrency;
+    window.removeToast = removeToast;
+    window.statusMessage = statusMessage;
 })(jQuery);
