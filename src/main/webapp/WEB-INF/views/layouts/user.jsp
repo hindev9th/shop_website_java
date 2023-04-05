@@ -13,7 +13,6 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Bege || Home 4</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -22,6 +21,7 @@
         <!-- Place favicon.ico in the root directory -->
         <title><decorator:title/></title>
 
+        <base href="<c:url value="/"/>" />
         <link rel="stylesheet" href="<c:url value = "/assets/user/css/bootstrap.min.css"/>">
         <link rel="stylesheet" href="<c:url value = "/assets/user/css/font-awesome.min.css" />">
         <link rel="stylesheet" href="<c:url value = "/assets/user/css/ionicons.min.css"/>">
@@ -33,6 +33,10 @@
     </head>
 
     <body>
+        <ul class="notifications"></ul>
+        <div class="box-loading">
+            <img src="<c:url value="/assets/user/images/loader.gif" />"/>
+        </div>
         <!-- Body main wrapper start -->
         <div class="wrapper home-three home-four">
             <%@include file="user/header.jsp" %>
@@ -46,7 +50,7 @@
         <script src="<c:url value = "/assets/user/js/jquery-1.12.4.min.js"/>"></script>
 
         <!-- jQuery Local -->
-
+        <script src="<c:url value = "/assets/user/js/jquery.barrating.min.js"/>"></script>
 
         <!-- Bootstrap min js  -->
         <script src="<c:url value = "/assets/user/js/bootstrap.min.js"/>"></script>
@@ -56,6 +60,8 @@
         <script src="<c:url value = "/assets/user/js/plugins.js"/>"></script>
         <!-- Main js  -->
         <script src="<c:url value = "/assets/user/js/main.js"/>"></script>
+        <!-- Custom js  -->
+        <script src="<c:url value = "/assets/user/js/custom.js"/>"></script>
 
     </body>
 </html>

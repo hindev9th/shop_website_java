@@ -22,9 +22,27 @@ public class CustomerDao {
     }
 
     public Customer login(String username,String password){
-        Customer customer;
+        List<Customer> list = new ArrayList<Customer>();
         String sql = "SELECT * from customer where username = ? and password = ?";
-        customer = this.jdbcTemplate.queryForObject(sql,new Object[]{username,password},new CustomerMapper());
-        return customer;
+        list = this.jdbcTemplate.query(sql,new Object[]{username,password},new CustomerMapper());
+        if (list.size() > 0){
+            return list.get(0);
+        }
+        return null;
+    }
+
+    public Customer save(Customer customer){
+        return null;
+    }
+
+    public Boolean exists(String username){
+        List<Customer> list = new ArrayList<Customer>();
+        String sql = "SELECT * from customer where username = ?";
+        list = this.jdbcTemplate.query(sql,new Object[]{username},new CustomerMapper());
+
+        if (list.size() > 0){
+            return true;
+        }
+        return false;
     }
 }

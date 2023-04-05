@@ -22,24 +22,22 @@
                     </div>
                 </div>
                 <div class="col-lg-6 col-sm-6">
-                    <div class="topbar-nav">
+                    <div class="topbar-nav" id="top-bar-nav">
                         <div class="wpb_wrapper">
-                            <c:if test="${not empty sessionScope.customer}" >
+                            <c:if test="${not empty sessionScope.customer}">
                                 <!-- my account -->
                                 <div class="menu-my-account-container">
                                     <a href="#">My Account <i class="ion-ios-arrow-down"></i></a>
                                     <ul>
-                                        <li><a href="my-account.html">My Account</a></li>
-                                        <li><a href="wishlist.html">Wishlist</a></li>
-
-                                        <li><a href="login.html">Login</a></li>
-                                        <li><a href="register.html">Register</a></li>
-                                        <li><a href="checkout.html">Checkout</a></li>
+                                        <li><a href="my-account.html">Tài khoản của tôi</a></li>
+                                        <li><a href="checkout.html">Sở thích</a></li>
+                                        <li><a href="login.html">Đơn hàng</a></li>
+                                        <li><a href="<c:url value="/signout" />">Đăng xuất</a></li>
                                     </ul>
                                 </div>
                             </c:if>
-                            <c:if test="${empty sessionScope.customer}" >
-                                <a href="<c:url value="/signin" />">Đăng nhập<i class=""></i></a>
+                            <c:if test="${empty sessionScope.customer}">
+                                <a href="<c:url value="/login" />">Đăng nhập<i class=""></i></a>
                                 <span> | </span>
                                 <a href="<c:url value="/signoup" />">Đăng ký<i class=""></i></a>
                             </c:if>
@@ -57,8 +55,9 @@
                 <div class="col-xl-3 col-md-12">
                     <!-- site-logo -->
                     <div class="site-logo">
-                        <a href="index.html"><img src="<c:url value= "/assets/user/images/logo/logo-black.png" />"
-                                                  alt="Nikado"></a>
+                        <a href="<c:url value="/" /> "><img
+                                src="<c:url value= "/assets/user/images/logo/logo-black.png" />"
+                                alt="Nikado"></a>
                     </div>
                 </div>
                 <div class="col-xl-6 col-md-12">
@@ -80,82 +79,75 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-md-12">
+                <div class="col-xl-3 col-md-12" id="list-mini-cart">
                     <!-- shop-cart-menu -->
                     <div class="shop-cart-menu pull-right">
                         <ul>
                             <li><a href="wishlist.html"><i class="ion-android-favorite-outline"></i></a></li>
                             <li><a href="#">
                                             <span class="cart-icon">
-                                                <i class="ion-bag"></i><sup>3</sup>
+                                                <i class="ion-bag"></i><sup id="quantity-minicart">${empty sessionScope.countCart ? 0 : sessionScope.countCart}</sup>
                                             </span>
                                 <span class="cart-text">
-                                                <span class="cart-text-title">My cart <br> <strong>$ 145.00</strong>
+                                                <span class="cart-text-title">Giỏ hàng <br> <strong class="subtotal-minicart"><fmt:formatNumber
+                                                        type="number" maxFractionDigits="3"
+                                                        value="${empty sessionScope.subtotalCart ? 0 : sessionScope.subtotalCart}"/>₫</strong>
                                                 </span>
                                             </span>
                             </a>
-                                <ul>
-                                    <li>
-                                        <!-- single-shop-cart-wrapper -->
-                                        <div class="single-shop-cart-wrapper">
-                                            <div class="shop-cart-img">
-                                                <a href="#"><img
-                                                        src="<c:url value= "/assets/user/images/product/1.jpg"/>"
-                                                        alt="Image of Product"></a>
-                                            </div>
-                                            <div class="shop-cart-info">
-                                                <h5><a href="cart.html">sport t-shirt men</a></h5>
-                                                <span class="price">£515.00</span>
-                                                <span class="quantaty">Qty: 1</span>
-                                                <span class="cart-remove"><a href="#"><i
-                                                        class="fa fa-times"></i></a></span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <!-- single-shop-cart-wrapper -->
-                                        <div class="single-shop-cart-wrapper">
-                                            <div class="shop-cart-img">
-                                                <a href="#"><img
-                                                        src="<c:url value= "/assets/user/images/product/2.jpg"/>"
-                                                        alt="Image of Product"></a>
-                                            </div>
-                                            <div class="shop-cart-info">
-                                                <h5><a href="cart.html">sport coat amet</a></h5>
-                                                <span class="price">£100.00</span>
-                                                <span class="quantaty">Qty: 1</span>
-                                                <span class="cart-remove"><a href="#"><i
-                                                        class="fa fa-times"></i></a></span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <!-- single-shop-cart-wrapper -->
-                                        <div class="single-shop-cart-wrapper">
-                                            <div class="shop-cart-img">
-                                                <a href="#"><img
-                                                        src="<c:url value= "/assets/user/images/product/3.jpg"/>"
-                                                        alt="Image of Product"></a>
-                                            </div>
-                                            <div class="shop-cart-info">
-                                                <h5><a href="cart.html">Pellentesque men</a></h5>
-                                                <span class="price">£265.00</span>
-                                                <span class="quantaty">Qty: 1</span>
-                                                <span class="cart-remove"><a href="#"><i
-                                                        class="fa fa-times"></i></a></span>
-                                            </div>
-                                        </div>
-                                    </li>
+                                <ul class="mini-cart">
+                                    <ul id="list-item-minicart">
+                                        <c:forEach var="item" items="${sessionScope.cart}">
+                                            <li>
+                                                <!-- single-shop-cart-wrapper -->
+                                                <div class="single-shop-cart-wrapper">
+                                                    <div class="shop-cart-img">
+                                                        <a href="#"><img
+                                                                src="<c:url value= "/assets/user/images/product/mini/${item.image}"/>"
+                                                                alt="Image of Product"></a>
+                                                    </div>
+                                                    <div class="shop-cart-info">
+                                                        <h5>
+                                                            <a href="<c:url value="/product/${item.productId}" />">${item.name}</a>
+                                                        </h5>
+                                                        <c:if test="${item.price > 0}">
+                                                            <del><fmt:formatNumber type="number" maxFractionDigits="3"
+                                                                                   value="${item.price}"/>₫
+                                                            </del>
+                                                            <span class="price"><fmt:formatNumber type="number"
+                                                                                                  maxFractionDigits="3"
+                                                                                                  value="${item.sale}"/>₫</span>
+                                                        </c:if>
+                                                        <c:if test="${item.price == 0}">
+                                                        <span class="price"><fmt:formatNumber type="number"
+                                                                                              maxFractionDigits="3"
+                                                                                              value="${item.price}"/>₫</span>
+                                                        </c:if>
+                                                        <span class="quantaty">Qty: ${item.quantity}</span>
+                                                        <span class="cart-remove " ><a class="btn-remove-item-cart" data-id="${item.productId}" data-color="${item.colorId}"><i
+                                                                class="fa fa-times" ></i></a></span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </c:forEach>
+                                    </ul>
                                     <li>
                                         <!-- shop-cart-total -->
                                         <div class="shop-cart-total">
-                                            <p>Subtotal: <span class="pull-right">£880.00</span></p>
+                                            <p class="total-save-cart">Tiết kiệm: <span class="pull-right total-save"><fmt:formatNumber type="number"
+                                                                                                                                        maxFractionDigits="3"
+                                                                                                                                        value="${empty sessionScope.totalSave ? 0 : sessionScope.totalSave}"/>₫</span>
+                                            </p>
+                                            <p>Tổng phụ: <span class="pull-right subtotal-minicart"><fmt:formatNumber type="number"
+                                                                                                    maxFractionDigits="3"
+                                                                                                    value="${empty sessionScope.subtotalCart ? 0 : sessionScope.subtotalCart}"/>₫</span>
+                                            </p>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="shop-cart-btn">
-                                            <a href="checkout.html">Checkout</a>
-                                            <a href="cart.html" class="pull-right">View Cart</a>
+                                            <a href="checkout.html">Thanh toán</a>
+                                            <a href="cart.html" class="pull-right">Giỏ hàng</a>
                                         </div>
                                     </li>
                                 </ul>
@@ -177,8 +169,9 @@
                         <nav>
                             <ul class="categori-menu-list menu-hidden">
                                 <c:forEach var="item" items="${categories}">
-                                    <li><a href="shop.html"></span>${ item.name }<i class="fa fa-angle-right"
-                                                                                    aria-hidden="true"></i></a>
+                                    <li><a href="<c:url value="/category/${item.id}" />"></span>${ item.name }<i
+                                            class="fa fa-angle-right"
+                                            aria-hidden="true"></i></a>
                                         <!-- categori Mega-Menu Start -->
                                         <ul class="ht-dropdown megamenu first-megamenu">
                                             <!-- Single Column Start -->
@@ -227,8 +220,8 @@
                     <div class="main-menu">
                         <nav>
                             <ul>
-                                <li class="current"><a href="index.html">Trang chủ</a></li>
-                                <li ><a href="shop.html">Thương hiệu <i class="fa fa-angle-down"></i></a>
+                                <li class="current"><a href="<c:url value="/" />">Trang chủ</a></li>
+                                <li><a href="<c:url value="/category" />">Thương hiệu <i class="fa fa-angle-down"></i></a>
                                     <ul class="submenu">
                                         <c:forEach var="item" items="${brands}">
                                             <li><a href="index.html">${item.name}</a></li>

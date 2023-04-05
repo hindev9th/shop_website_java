@@ -43,7 +43,7 @@ Version: 1.0.0
 [ End table content ]
 =================================================== */
 
-
+@import 'module/module.css';
 /* ======================================================
     Header
 ====================================================== */
@@ -324,7 +324,7 @@ a:focus{
     display: inline-block;
     line-height: 15px;
     list-style: outside none none;
-    padding: 0 29px;
+    padding: 0 15px;
     position: relative;
 }
 
@@ -392,7 +392,7 @@ a:focus{
     height: auto;
     z-index: 9;
     background-color: #fff;
-    padding: 10px 20px;
+    padding: 10px 0px;
     right: 0;
     width: 300px;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
@@ -410,7 +410,7 @@ a:focus{
 
 .shop-cart-menu > ul li ul li {
     list-style: none;
-    padding: 15px 0;
+    padding: 15px 20px;
     line-height: 1.5;
 }
 
@@ -2149,6 +2149,7 @@ li.megamenu-img a {
 }
 
 .product-carosel-area .product-wrapper.listview .add-to-cart a {
+    cursor: pointer;
     background: #ffffff none repeat scroll 0 0;
     border: 2px solid #ededed;
     border-radius: 50px;
@@ -3177,10 +3178,17 @@ button.owl-dot {
 .product-review-area ol {
     list-style: none;
 }
-
+.product-review-area .commentlist li{
+    margin-bottom: 10px;
+}
 .product-review-area .commentlist li .comment-avatar {
     float: left;
-    margin-right: 20px;
+    margin-right: 5px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 1px solid #ededed;
 }
 
 .product-review-area .commentlist li .comment-info {
@@ -7815,7 +7823,7 @@ a.  :hover {
 .product-details .product-details-tab .product-details-small{
     position: relative;
     max-width: 100%;
-    width: auto;
+    width: 100%;
     left: auto;
     top: auto;
 }

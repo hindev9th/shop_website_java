@@ -41,7 +41,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-                    <form class="form-register" action="<c:url value="/"/>" method="post">
+                    <form:form action="/sign" cssClass="form-register" modelAttribute="customer" method="post">
+                        <form:input path="name" cssClass="form-control"
+                    </form:form>
+                    <form class="form-register" action="<c:url value="/"/>"  method="post">
                         <fieldset>
                             <legend>Your Personal Details</legend>
                             <div class="form-group d-md-flex align-items-md-center">
@@ -101,7 +104,7 @@
                                 <input type="submit" value="Continue" class="return-customer-btn">
                             </div>
                         </div>
-                    </form>
+                    </>
                 </div>
             </div>
         </div>

@@ -19,7 +19,7 @@ public class ProductDao {
      */
     public StringBuffer sqlStringBuffer() {
         StringBuffer query = new StringBuffer();
-        query.append("SELECT pr.id, pr.code, pr.name, pr.categoryId, pr.brandId, pr.type,  pr.price, pr.sale, pr.quantity, pr.sold,color.code AS color_code, color.name AS color_name,color.quantity AS color_quantity, color.sold AS color_sold, pr.image, color.image AS color_image, pr.rate, pr.isNew, pr.isHighlights, pr.info, pr.describe, pr.createAt, pr.updateAt");
+        query.append("SELECT pr.id, pr.code, pr.name, pr.categoryId, pr.brandId, pr.type,  pr.price, pr.sale, pr.quantity, pr.sold, color.id AS colorId, color.code AS colorCode, color.name AS colorName,color.quantity AS colorQuantity, color.sold AS colorSold, pr.image, color.image AS colorImage, pr.rate, pr.isNew, pr.isHighlights, pr.info, pr.describe, pr.createAt, pr.updateAt");
         query.append(" FROM product pr ");
         query.append(" INNER JOIN product_color color ON pr.id = color.productId");
         return query;
@@ -57,22 +57,43 @@ public class ProductDao {
      */
     public List<Product> getDataProductsFeatured() {
         List<Product> list = new ArrayList<Product>();
-        String sql = getQuery("pr.isHighlights = 1", "pr.id,pr.type", "", "0,16");
+        String sql = getQuery("pr.isHighlights = 1 and color.quantity > 0", "pr.id,pr.type", "", "0,16");
         list = jdbcTemplate.query(sql, new ProductMapper());
         return list;
     }
 
     public List<Product> getDataProductsNew() {
         List<Product> list = new ArrayList<Product>();
-        String sql = getQuery("pr.isNew = 1", "pr.id,pr.type", "", "0,16");
+        String sql = getQuery("pr.isNew = 1 and color.quantity > 0", "pr.id,pr.type", "", "0,16");
         list = jdbcTemplate.query(sql, new ProductMapper());
         return list;
     }
 
     public List<Product> getDataProductsTopRate() {
         List<Product> list = new ArrayList<Product>();
-        String sql = getQuery("", "pr.code", "pr.rate DESC", "0,16");
+        String sql = getQuery("color.quantity > 0", "pr.code", "pr.rate DESC", "0,16");
         list = jdbcTemplate.query(sql, new ProductMapper());
         return list;
+    }
+
+    public List<Product> getProduct(int id){
+        List<Product> list = new ArrayList<Product>();
+        String sql = getQuery("pr.id = ? and color.quantity > 0", "" , "", "");
+        list = jdbcTemplate.query(sql,new Object[]{id},new ProductMapper());
+        return list;
+    }
+
+    public List<Product> getProduct(String code){
+        List<Product> list = new ArrayList<Product>();
+        String sql = getQuery("pr.code = ? and color.quantity > 0", "pr.id" , "", "");
+        list = jdbcTemplate.query(sql,new Object[]{code},new ProductMapper());
+        return list;
+    }
+
+    public Product getProduct(int id, int colorId){
+        List<Product> list = new ArrayList<Product>();
+        String sql = getQuery("pr.id = ? and color.id = ?", "pr.id" , "", "");
+        list = jdbcTemplate.query(sql,new Object[]{id,colorId},new ProductMapper());
+        return list.get(0);
     }
 }

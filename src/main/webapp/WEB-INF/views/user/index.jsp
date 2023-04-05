@@ -366,7 +366,7 @@
                                     <div class="product-wrapper listview">
                                         <div class="list-col4">
                                             <div class="product-image">
-                                                <a href="">
+                                                <a href="<c:url value="/product/${item.id}" />">
                                                     <img src="<c:url value = "/assets/user/images/product/mini/${item.image}" />" alt="">
                                                 </a>
                                                 <div class="quickviewbtn">
@@ -378,7 +378,7 @@
                                         </div>
                                         <div class="list-col8">
                                             <div class="product-info">
-                                                <h2><a href="single-product.html">${item.name} - ${item.type}</a></h2>
+                                                <h2><a href="<c:url value="/product/${item.id}" />">${item.name} - ${item.type}</a></h2>
                                                 <span class="price">
                                                                 <c:if test="${item.sale > 0}">
                                                                     <del><fmt:formatNumber type="number" maxFractionDigits="3" value="${item.sale}" />₫</del>
@@ -399,7 +399,7 @@
                                                 </div>
                                             </div>
                                             <div class="add-to-cart">
-                                                <a href="cart.html">Add to cart</a>
+                                                <a class="btn-add-to-cart" action="<c:url value="/ajax/cart/add"/>" product-id="${item.id}" data-color-id="${item.colorId}" i="1" name="${item.name}" >Thêm giỏ hàng</a>
                                             </div>
                                         </div>
                                     </div>
@@ -432,7 +432,7 @@
                                     <div class="product-wrapper listview">
                                         <div class="list-col4">
                                             <div class="product-image">
-                                                <a href="">
+                                                <a href="<c:url value="/product/${item.id}" />">
                                                     <img src="<c:url value = "/assets/user/images/product/mini/${item.image}" />" alt="">
                                                 </a>
                                                 <div class="quickviewbtn">
@@ -444,7 +444,7 @@
                                         </div>
                                         <div class="list-col8">
                                             <div class="product-info">
-                                                <h2><a href="single-product.html">${item.name} - ${item.type}</a></h2>
+                                                <h2><a href="<c:url value="/product/${item.id}" />">${item.name} - ${item.type}</a></h2>
                                                 <span class="price">
                                                                 <c:if test="${item.sale > 0}">
                                                                     <del><fmt:formatNumber type="number" maxFractionDigits="3" value="${item.sale}" />₫</del>
@@ -465,7 +465,7 @@
                                                 </div>
                                             </div>
                                             <div class="add-to-cart">
-                                                <a href="cart.html">Add to cart</a>
+                                                <a class="btn-add-to-cart" action="<c:url value="/ajax/cart/add"/>" product-id="${item.id}" data-color-id="${item.colorId}" i="1" name="${item.name}" >Thêm giỏ hàng</a>
                                             </div>
                                         </div>
                                     </div>
@@ -497,7 +497,7 @@
                                         <div class="product-wrapper listview">
                                             <div class="list-col4">
                                                 <div class="product-image">
-                                                    <a href="">
+                                                    <a href="<c:url value="/product/${item.id}" />">
                                                         <img src="<c:url value = "/assets/user/images/product/mini/${item.image}" />" alt="">
                                                     </a>
                                                     <div class="quickviewbtn">
@@ -509,28 +509,30 @@
                                             </div>
                                             <div class="list-col8">
                                                 <div class="product-info">
-                                                    <h2><a href="single-product.html">${item.name} - ${item.type}</a></h2>
+                                                    <h2><a href="<c:url value="/product/${item.id}" />">${item.name} - ${item.type}</a></h2>
                                                     <span class="price">
                                                                 <c:if test="${item.sale > 0}">
-                                                                    <del><fmt:formatNumber type="number" maxFractionDigits="3" value="${item.sale}" />₫</del>
+                                                                    <del><fmt:formatNumber type="number" maxFractionDigits="3" value="${item.price}" />₫</del>
+                                                                    <fmt:formatNumber type="number" maxFractionDigits="3" value="${item.sale}" />₫
                                                                 </c:if>
-                                                                    <fmt:formatNumber type="number" maxFractionDigits="3" value="${item.price}" />₫
+                                                        <c:if test="${item.sale == 0}">
+                                                            <fmt:formatNumber type="number" maxFractionDigits="3" value="${item.price}" />₫
+                                                        </c:if>
                                                                 </span>
                                                     <div class="product-rattings">
-                                                        <c:forEach var="i" begin="1" end="${item.rate}">
-                                                            <span><i class="fa fa-star"></i></span>
+                                                        <c:forEach var="i" begin="1" end="5">
+                                                            <c:if test="${i <= item.rate}">
+                                                                <span><i class="fa fa-star"></i></span>
+                                                            </c:if>
+                                                            <c:if test="${i > item.rate}">
+                                                                <span><i class="fa fa-star-o"></i></span>
+                                                            </c:if>
                                                         </c:forEach>
 <%--                                                            <span><i class="fa fa-star-half-o"></i></span>--%>
-                                                        <c:if test="${item.rate < 5}">
-                                                            <c:forEach var="i" begin="${item.rate}" end="4">
-                                                                <span><i class="fa fa-star-o"></i></span>
-                                                            </c:forEach>
-                                                        </c:if>
-
                                                     </div>
                                                 </div>
                                                 <div class="add-to-cart">
-                                                    <a href="cart.html">Add to cart</a>
+                                                    <a class="btn-add-to-cart" action="<c:url value="/ajax/cart/add"/>" product-id="${item.id}" data-color-id="${item.colorId}" i="1" name="${item.name}" >Thêm giỏ hàng</a>
                                                 </div>
                                             </div>
                                         </div>

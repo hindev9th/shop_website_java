@@ -20,18 +20,19 @@ public class ProductMapper implements RowMapper<Product> {
         products.setQuantity(resultSet.getInt("quantity"));
         products.setSold(resultSet.getInt("sold"));
         products.setImage(resultSet.getString("image"));
-        products.setColor_code(resultSet.getString("color_code"));
-        products.setColor_name(resultSet.getString("color_name"));
-        products.setColor_quantity(resultSet.getInt("color_quantity"));
-        products.setColor_sold(resultSet.getInt("color_sold"));
-        products.setColor_image(resultSet.getString("color_image"));
+        products.setColorId(resultSet.getInt("colorId"));
+        products.setColorCode(resultSet.getString("colorCode"));
+        products.setColorName(resultSet.getString("colorName"));
+        products.setColorQuantity(resultSet.getInt("colorQuantity"));
+        products.setColorSold(resultSet.getInt("colorSold"));
+        products.setColorImage(resultSet.getString("colorImage"));
         products.setRate(resultSet.getInt("rate"));
-        products.setIsNew(resultSet.getBoolean("isNew"));
-        products.setIsHighlights(resultSet.getBoolean("isHighlights"));
+        products.setNew(resultSet.getBoolean("isNew"));
+        products.setHighlights(resultSet.getBoolean("isHighlights"));
         products.setInfo(resultSet.getString("info"));
         products.setDescribe(resultSet.getString("describe"));
-        products.setCreate_at(resultSet.getString("createAt"));
-        products.setUpdate_at(resultSet.getString("updateAt"));
+        products.setCreateAt(resultSet.getString("createAt"));
+        products.setUpdateAt(resultSet.getString("updateAt"));
         return products;
     }
 }
