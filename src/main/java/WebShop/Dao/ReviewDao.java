@@ -16,7 +16,8 @@ public class ReviewDao {
 
     public List<Review> getDataReview(String code){
         List<Review> list = new ArrayList<>();
-        String sql = "SELECT rv.id,rv.code,cm.name,cm.image,rv.rate,rv.content,rv.createAt FROM product_review as rv INNER JOIN customer as cm ON cm.id = rv.customerId where code = ? order by createAt desc";
+        String sql = "SELECT rv.id,rv.code,cm.name,cm.image,rv.rate,rv.content,rv.createAt FROM product_review as rv " +
+                "INNER JOIN customers as cm ON cm.id = rv.customerId where code = ? order by createAt desc";
         list = this.jdbcTemplate.query(sql,new Object[]{code},new ReviewMapper());
         return list;
     }
@@ -26,7 +27,7 @@ public class ReviewDao {
         List<Review> list = new ArrayList<>();
         String sql = "SELECT rv.id,rv.code,cm.name,cm.image,rv.rate,rv.content,rv.createAt " +
                 "FROM product_review as rv " +
-                "INNER JOIN customer as cm ON cm.id = rv.customerId " +
+                "INNER JOIN customers as cm ON cm.id = rv.customerId " +
                 "where code = ? " +
                 "order by createAt desc limit ?,5 ";
         list = this.jdbcTemplate.query(sql,new Object[]{code,min},new ReviewMapper());

@@ -57,22 +57,25 @@
     });
 
     //loading
-    $('.btn-return').click(function (){
+    $('.btn-return').click(function () {
         $(".box-loading").addClass("active");
     })
-    $(window).on('unload', function() {
+    $(window).on('unload', function () {
         $('.box-loading').removeClass("active");
     });
+    $(document).ready(function () {
+        $(".box-loading").removeClass("active");
+    })
 
     //register
-    $('#pwd-confirm').keyup(function (){
+    $('#pwd-confirm').keyup(function () {
         var password = $('#register-pwd').val();
         var confirm = $(this).val();
 
-        if (confirm == password){
-            $(this).css('border','2px solid #198754');
-        }else {
-            $(this).css('border','2px solid #ec5a4a');
+        if (confirm == password) {
+            $(this).css('border', '2px solid #198754');
+        } else {
+            $(this).css('border', '2px solid #ec5a4a');
         }
     })
 
@@ -106,19 +109,19 @@
     function updateMiniCart(data) {
         $("#list-item-minicart").empty();
         var url = $("base").attr("href");
-        for (let i = 0 ; i < data.length; i++){
+        for (let i = 0; i < data.length; i++) {
             var html1 = `<li>
                  <div class="single-shop-cart-wrapper">
                    <div class="shop-cart-img">
-                    <a href="#"><img src="${url}assets/user/images/product/mini/${data[i].image}" alt="Image of Product"></a>
+                    <a href="${url}product/${data[i].productId}"><img src="${url}assets/user/images/product/mini/${data[i].image}" alt="Image of Product"></a>
                    </div>
                    <div class="shop-cart-info">
                       <h5><a href="${url}product/${data[i].productId}">${data[i].name}</a></h5>`
-            var html2 ="";
-            if (data[i].sale > 0){
+            var html2 = "";
+            if (data[i].sale > 0) {
                 html2 = `<del>${formatCurrency(data[i].price)}</del>
                          <span class="price">${formatCurrency(data[i].sale)}</span>`
-            }else {
+            } else {
                 html2 = `<span class="price">${formatCurrency(data[i].price)}</span>`
             }
 
@@ -134,12 +137,72 @@
 
     }
 
-    function formatCurrency(number){
-        let formatNumber = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(number);
+    function updateCart(data) {
+        $('#list-cart-items').empty();
+        var url = $("base").attr("href");
+        if (data.length > 0){
+            for (let i = 0; i < data.length; i++) {
+                var html1 = `<div class="cart-item">
+              <div class="product-content">
+                 <div class="product-image">
+                    <a href="${url}product/${data[i].productId}"><img src="${url}assets/user/images/product/mini/${data[i].image}" alt="product image"></a>
+                 </div>
+                 <div class="product-details">
+                    <div class="product-info">
+                       <a href="${url}product/${data[i].productId}" class="product-name">${data[i].name}</a>
+                       <div class="product-type">
+                          <span class="type">Loại: ${data[i].type}</span>
+                          <span class="color">Màu sắc: ${data[i].colorName}</span>
+                       </div>`
+                var html2 = "";
+                if (data[i].sale > 0) {
+                    html2 = `<del>${formatCurrency(data[i].price)}</del>
+                         <span class="product-price">${formatCurrency(data[i].sale)}</span>`
+                } else {
+                    html2 = `<span class="product-price">${formatCurrency(data[i].price)}</span>`
+                }
+
+                var html3 = `</div>
+                <div class="product-quantity">
+                   <label for="input-quantity-cart"
+                          class="product-quantity-action" id="action-minus" product-id="${data[i].productId}" data-color-id="${data[i].colorId}"><i
+                          class="fa fa-minus" aria-hidden="true"></i></label>
+                   <input type="number" readonly min="0" value="${data[i].quantity}" id="input-quantity-cart"
+                          class="input-quantity-cart">
+                   <label for="input-quantity-cart"
+                          class="product-quantity-action" id="action-plus" product-id="${data[i].productId}" data-color-id="${data[i].colorId}"><i
+                          class="fa fa-plus" aria-hidden="true"></i></label>
+                   </div>
+                   <span class="product-subtotal">Tổng: ${formatCurrency(data[i].sale > 0 ? data[i].sale * data[i].quantity : data[i].price * data[i].quantity)}</span>
+                   <div class="product-remove-item">
+                      <a class="btn-remove-item-cart" data-id="${data[i].productId}" data-color="${data[i].colorId}">Xóa</a>
+                  </div>
+                </div>
+              </div>
+            </div>`
+
+                var html = html1 + html2 + html3;
+                $("#list-cart-items").append(html);
+            }
+        }else {
+            var html = `<div class="box-cart-message">
+                        <h3>Giỏ hàng của bạn chưa có sản phẩm nào.</h3>
+                        <div class="buttons-cart">
+                            <a href="${url}">Mua sắm ngay</a>
+                        </div>
+                    </div>`
+            $("#cart-message").html(html);
+        }
+
+    }
+
+    function formatCurrency(number) {
+        let formatNumber = new Intl.NumberFormat('vi-VN', {style: 'currency', currency: 'VND'}).format(number);
         return formatNumber;
     }
 
     window.updateMiniCart = updateMiniCart;
+    window.updateCart = updateCart;
     window.showToast = showToast;
     window.formatCurrency = formatCurrency;
     window.removeToast = removeToast;

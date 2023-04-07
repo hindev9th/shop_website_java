@@ -3,8 +3,10 @@ package WebShop.Entity;
 public class Cart {
     private int productId;
     private String name;
+    private String type;
     private int colorId;
     private String colorCode;
+    private String colorName;
     private int price;
     private int sale;
     private int quantity;
@@ -13,11 +15,15 @@ public class Cart {
     public Cart() {
     }
 
-    public Cart(int productId, String name, int colorId, String colorCode, int price, int sale, int quantity, String image) {
+    public Cart(int productId, String name,String type, int colorId, String colorCode,String colorName, int price,
+                int sale, int quantity
+            , String image) {
         this.productId = productId;
         this.name = name;
+        this.type = type;
         this.colorId = colorId;
         this.colorCode = colorCode;
+        this.colorName = colorName;
         this.price = price;
         this.sale = sale;
         this.quantity = quantity;
@@ -40,6 +46,14 @@ public class Cart {
         this.name = name;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public int getColorId() {
         return colorId;
     }
@@ -54,6 +68,14 @@ public class Cart {
 
     public void setColorCode(String colorCode) {
         this.colorCode = colorCode;
+    }
+
+    public String getColorName() {
+        return colorName;
+    }
+
+    public void setColorName(String colorName) {
+        this.colorName = colorName;
     }
 
     public int getPrice() {

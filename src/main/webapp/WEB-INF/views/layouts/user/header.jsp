@@ -37,9 +37,9 @@
                                 </div>
                             </c:if>
                             <c:if test="${empty sessionScope.customer}">
-                                <a href="<c:url value="/login" />">Đăng nhập<i class=""></i></a>
+                                <a href="<c:url value="/login" />" class="btn-return">Đăng nhập<i class=""></i></a>
                                 <span> | </span>
-                                <a href="<c:url value="/signoup" />">Đăng ký<i class=""></i></a>
+                                <a href="<c:url value="/register" />" class="btn-return">Đăng ký<i class=""></i></a>
                             </c:if>
                         </div>
                     </div>
@@ -147,7 +147,7 @@
                                     <li>
                                         <div class="shop-cart-btn">
                                             <a href="checkout.html">Thanh toán</a>
-                                            <a href="cart.html" class="pull-right">Giỏ hàng</a>
+                                            <a href="<c:url value="/cart"/>" class="pull-right">Giỏ hàng</a>
                                         </div>
                                     </li>
                                 </ul>

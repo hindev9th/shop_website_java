@@ -34,7 +34,7 @@
 
     <body>
         <ul class="notifications"></ul>
-        <div class="box-loading">
+        <div class="box-loading active">
             <img src="<c:url value="/assets/user/images/loader.gif" />"/>
         </div>
         <!-- Body main wrapper start -->

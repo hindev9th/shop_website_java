@@ -1,0 +1,82 @@
+.cart-page-area .cart-item{
+    border-bottom: 1px solid #e5e5e5;
+    padding: 15px 0;
+}
+.cart-page-area .cart-item .product-content{
+    display: flex;
+}
+
+.cart-page-area .cart-item .product-content .product-image{
+    width: 140px;
+}
+.cart-page-area .cart-item .product-content .product-details{
+    padding-left: 15px;
+}
+.cart-page-area .cart-item .product-content .product-details , .product-details .product-info{
+    display: flex;
+    flex-direction: column;
+}
+.cart-page-area .product-info .product-name{
+    font-size: 14px;
+    font-weight: 500;
+    color: #6f6f6f;
+    text-transform: capitalize;
+}
+.cart-page-area .product-details .product-info{
+    padding-bottom: 10px;
+}
+.cart-page-area .product-details .product-type , .product-details > span {
+    display: flex;
+}
+.cart-page-area .product-details .product-type .color{
+    margin-left: 15px;
+}
+.cart-page-area .product-details .product-quantity{
+    display: flex;
+    align-items: center;
+}
+.cart-page-area .product-details .product-quantity .product-quantity-action{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    height: 100%;
+    background: #363f4d none repeat scroll 0 0;
+    color: #fff;
+    padding: 0 10px;
+}
+.cart-page-area .product-details .product-quantity .product-quantity-action:hover{
+    background: #12A4DD none repeat scroll 0 0;
+    color: #fff;
+}
+
+.cart-page-area .product-details .product-quantity .input-quantity-cart{
+    text-align: center;
+    background: #e5e5e5 none repeat scroll 0 0;
+    border: medium none;
+    border-radius: 0px;
+    color: #6f6f6f;
+    font-size: 15px;
+    font-weight: normal;
+    height: 30px;
+    padding: 0 5px 0 10px;
+    width: 60px;
+}
+.cart-page-area .product-details .product-quantity .input-quantity-cart:focus{
+    border: medium none;
+}
+.cart-page-area .product-details .product-subtotal{
+    padding: 10px 0;
+    font-size: 15px;
+    font-weight: 600;
+}
+.cart-page-area .product-remove-item a{
+    background-color: #333;
+    padding: 0 15px;
+    color: #fff;
+    float: left;
+    height: 40px;
+    line-height: 40px;
+}
+.cart-page-area .product-remove-item a:hover{
+    color: #f82e56;
+}

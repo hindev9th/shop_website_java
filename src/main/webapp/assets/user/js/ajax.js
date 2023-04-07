@@ -76,7 +76,6 @@
             type: "get",
             beforeSend: function (data) {
                 $(this).attr("disabled", true);
-                console.log("load");
                 element.text("Đang tải...");
             },
             success: function (data) {
@@ -97,6 +96,45 @@
 
     //cart
     // add to cart
+    $(document).on('click', '.product-quantity-action', function () {
+        var url = $("base").attr("href");
+        var productId = $(this).attr("product-id");
+        var colorId = $(this).attr("data-color-id");
+        if ($(this).attr('id') === "action-plus"){
+            number =  1;
+        }
+        if ($(this).attr('id') === "action-minus"){
+            number =  - 1;
+        }
+
+        $.ajax({
+            url: url + "ajax/cart/add",
+            type: "post",
+            data: {
+                "id": productId,
+                "colorId": colorId,
+                "i": number,
+            }, beforeSend: function (data) {
+                $(".box-loading").addClass("active");
+            }
+            , success: function (response) {
+                $(".box-loading").removeClass("active");
+                const data = JSON.parse(response);
+                if (data.status === 200) {
+                    $(".subtotal-minicart").html(formatCurrency(data.sTotalCart));
+                    $("#quantity-minicart").html(data.cCart);
+                    $(".total-save").html(formatCurrency(data.tSave));
+                    updateMiniCart(data.cartList);
+                    updateCart(data.cartList);
+                    showToast(statusMessage.success, data.message);
+                } else {
+                    showToast(statusMessage.warning, data.message);
+                }
+            }, error : function (){
+                showToast(statusMessage.error, "Lỗi máy chủ");
+            }
+        })
+    })
     $("a.btn-add-to-cart").click(function () {
         var action = $(this).attr("action");
         var productId = $(this).attr("product-id");
@@ -121,13 +159,14 @@
                     $("#quantity-minicart").html(data.cCart);
                     $(".total-save").html(formatCurrency(data.tSave));
                     updateMiniCart(data.cartList);
+                    updateCart(response.cartList);
                     showToast(statusMessage.success, data.message);
                 } else {
-                    showToast(statusMessage.error, data.message);
+                    showToast(statusMessage.warning, data.message);
                 }
-
-                // alert()
-            },
+            }, error : function (){
+                showToast(statusMessage.error, "Lỗi máy chủ");
+            }
         })
     });
 
@@ -152,6 +191,7 @@
                     $("#quantity-minicart").html(response.cCart);
                     $(".total-save").html(formatCurrency(response.tSave));
                     updateMiniCart(response.cartList);
+                    updateCart(response.cartList);
                     showToast(statusMessage.success, response.message);
                 } else {
                     showToast(statusMessage.error, response.message);

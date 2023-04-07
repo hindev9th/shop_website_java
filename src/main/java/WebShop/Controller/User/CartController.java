@@ -8,10 +8,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
@@ -22,6 +19,10 @@ public class CartController extends BaseController{
     @Autowired
     ProductService productService;
 
+    @GetMapping(value = "/cart",produces = "application/x-www-form-urlencoded;charset=UTF-8")
+    public String index(){
+        return "user/cart";
+    }
 
     @RequestMapping(value ="/ajax/cart/add",method = RequestMethod.POST,produces = "application/x-www-form-urlencoded;charset=UTF-8")
     @ResponseBody
@@ -32,7 +33,7 @@ public class CartController extends BaseController{
         Product product = productService.getProduct(id, colorId);
         String message = "";
         int status = 0;
-        int quantity = i > 0 ? i : 1;
+        int quantity = i;
         JSONObject response = new JSONObject();
         if (product.getColorQuantity() <= quantity) {
             message = "Sản phẩm " + product.getName() + " : " + product.getType() + " : " + product.getColorName() + " đã hết hàng.";
@@ -66,7 +67,7 @@ public class CartController extends BaseController{
     }
 
 
-    @RequestMapping("/ajax/cart/delete")
+    @RequestMapping(value = "/ajax/cart/delete",produces = "application/x-www-form-urlencoded;charset=UTF-8")
     @ResponseBody
     public String deleteCartItem(@RequestParam("id") int id,@RequestParam("colorId") int colorId, HttpSession session) {
         List<Cart> carts = getCartsFromSession(session);
@@ -106,8 +107,10 @@ public class CartController extends BaseController{
             JSONObject cartObj = new JSONObject();
             cartObj.put("productId", cart.getProductId());
             cartObj.put("name", cart.getName());
+            cartObj.put("type", cart.getType());
             cartObj.put("colorId", cart.getColorId());
             cartObj.put("colorCode", cart.getColorCode());
+            cartObj.put("colorName", cart.getColorName());
             cartObj.put("price", cart.getPrice());
             cartObj.put("sale", cart.getSale());
             cartObj.put("quantity", cart.getQuantity());
@@ -131,12 +134,17 @@ public class CartController extends BaseController{
         for (Cart cart : carts) {
             if (cart.getProductId() == product.getId() && cart.getColorId() == product.getColorId()) {
                 cart.setQuantity(cart.getQuantity() + quantity);
+                if(cart.getQuantity() < 1)  {
+                    carts.remove(cart);
+                }
                 itemExists = true;
                 break;
             }
         }
         if (!itemExists) {
-            Cart cart = new Cart(product.getId(), product.getName(), product.getColorId(), product.getColorCode(), product.getPrice(), product.getSale(), quantity, product.getImage());
+            Cart cart = new Cart(product.getId(), product.getName(),product.getType(), product.getColorId(),
+                    product.getColorCode(), product.getColorName(),
+                    product.getPrice(), product.getSale(), quantity, product.getImage());
             carts.add(cart);
         }
     }
