@@ -107,6 +107,7 @@
 
     //minicart
     function updateMiniCart(data) {
+        updateCart(data);
         $("#list-item-minicart").empty();
         var url = $("base").attr("href");
         for (let i = 0; i < data.length; i++) {
@@ -202,7 +203,6 @@
     }
 
     window.updateMiniCart = updateMiniCart;
-    window.updateCart = updateCart;
     window.showToast = showToast;
     window.formatCurrency = formatCurrency;
     window.removeToast = removeToast;

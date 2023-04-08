@@ -125,7 +125,6 @@
                     $("#quantity-minicart").html(data.cCart);
                     $(".total-save").html(formatCurrency(data.tSave));
                     updateMiniCart(data.cartList);
-                    updateCart(data.cartList);
                     showToast(statusMessage.success, data.message);
                 } else {
                     showToast(statusMessage.warning, data.message);
@@ -159,7 +158,6 @@
                     $("#quantity-minicart").html(data.cCart);
                     $(".total-save").html(formatCurrency(data.tSave));
                     updateMiniCart(data.cartList);
-                    updateCart(response.cartList);
                     showToast(statusMessage.success, data.message);
                 } else {
                     showToast(statusMessage.warning, data.message);
@@ -191,7 +189,6 @@
                     $("#quantity-minicart").html(response.cCart);
                     $(".total-save").html(formatCurrency(response.tSave));
                     updateMiniCart(response.cartList);
-                    updateCart(response.cartList);
                     showToast(statusMessage.success, response.message);
                 } else {
                     showToast(statusMessage.error, response.message);
